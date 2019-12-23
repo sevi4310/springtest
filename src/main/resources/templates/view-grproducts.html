@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1" />
+<title>View Products</title>
+
+<style type="text/css">
+.tg {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.tg td {
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	padding: 10px 5px;
+	border-style: solid;
+	border-width: 1px;
+	overflow: hidden;
+	word-break: normal;
+	border-color: black;
+}
+
+.tg th {
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	font-weight: normal;
+	padding: 10px 5px;
+	border-style: solid;
+	border-width: 1px;
+	overflow: hidden;
+	word-break: normal;
+	border-color: black;
+}
+
+.tg .tg-0lax {
+	text-align: left;
+	vertical-align: top
+}
+</style>
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<Script>
+	function saveProductId(id) {
+		localStorage.setItem('productId', id);
+	}
+</Script>
+
+<script>
+	$(document)
+			.ready(
+					function() {
+						$
+								.getJSON(
+										"http://localhost:8080/grproducts",
+										function(result) {
+											$
+													.each(
+															result,
+															function(key, value) {
+																$("#tabPrList")
+																		.append(
+																				"<tr><td>"
+																						+ value.id
+																						+ "</td><td>"
+																						+ value.name
+																						+ "</td><td> "
+																						+ value.price
+																								.toLocaleString(
+																										'en-US',
+																										{
+																											style : 'currency',
+																											currency : 'USD'
+																										})
+																						+ "</td><td><a href='http://localhost:8080/view-grproduct' onclick='saveProductId("
+																						+ value.id
+																						+ ")'> BUY </a> "
+																						+ "</td></tr>");
+
+															});
+										});
+					});
+</script>
+</head>
+
+<body>
+	<div id="productsJson">
+		Product List
+		<table id="tabPrList" class="tg">
+			<tr>
+				<th>Code</th>
+				<th>Name</th>
+				<th>Description</th>
+				<th>Price</th>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

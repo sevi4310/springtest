@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1" />
+<title>View Products</title>
+
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+function processingAlert() {
+  alert("Processing...");
+}
+</script>
+<script>
+	$(document)
+			.ready(
+					function() {
+						$
+								.getJSON(
+										"http://localhost:8080/grproduct/"
+												+ localStorage
+														.getItem('productId'),
+										function(result) {
+											$("#tabProduct")
+													.append(
+															"<tr><td> ID: </td><td> "
+																	+ result.id
+																	+ " </td></tr><tr><td> Name: </td><td> "
+																	+ result.name
+																	+ "</td></tr><tr><td> Price: </td><td>"
+																	+ result.price
+																			.toLocaleString(
+																					'en-US',
+																					{
+																						style : 'currency',
+																						currency : 'USD'
+																					})
+																	+ " </td></tr><tr><td> Descriotion: </td><td> "
+																	+ result.description)
+													+ " </td></tr>";
+
+										});
+					});
+</script>
+</head>
+
+<body>
+	<div id="productJson">
+		<a href="/view-grproducts">Product List</a>
+		<p>Product:
+		<table id="tabProduct"></table>
+		<div id="idBuy">
+			<form action="/buy" method="get" id="form1">
+				Quantity: <input type="text" size="2" name="quantity">
+			</form>
+			<!-- TODO Not Implemented -->
+			<button type="button"  value="buy" onclick="processingAlert()">BUY</button>
+		</div>
+
+	</div>
+</body>
+</html>
