@@ -52,7 +52,7 @@ public class ProductServiceControllerTest extends AbstractTest {
 	@Test
 	public void priceIncreaseCheck() throws Exception {
 		String uri = "/grproduct/5003";
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < ProductServiceControllerGildedRose.PRICE_INCREASE_LIMIT; i++) {
 			MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri).accept(MediaType.APPLICATION_JSON_VALUE))
 					.andReturn();
 

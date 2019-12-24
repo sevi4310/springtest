@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class ProductServiceControllerGildedRose {
-	private static final int PRICE_INCREASE_LIMIT = 10;
+	public static final int PRICE_INCREASE_LIMIT = 10;
 	private static final int PRICE_INCREASE_VALUE = 10;
 	private static final int TIME_OFFSET = 3600 * 1000; // 1 hour Millis
 	private static Map<String, Product> productRepo = new LinkedHashMap<>();
